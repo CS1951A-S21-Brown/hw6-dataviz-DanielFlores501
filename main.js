@@ -37,13 +37,13 @@ let svg3 = d3.select("#graph3")
   addGraph3(document.getElementById('regionForm').value);
 
 function addGraph3(region) {
-  let tooltip = d3.select("#graph3")  
+  let tooltip = d3.select("#graph3")
     .append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
   svg3.selectAll("text").remove();
-  const radius = 170
+  const radius = 160
   let g = svg3.append("g");
 
     var path = d3.arc()
@@ -60,6 +60,26 @@ function addGraph3(region) {
              .domain(data.map(function(d) { return d[0] }))
              .range(d3.quantize(d3.interpolateHcl("#FF5733  ", "#800080"), 10));
 
+         let mouseover = function(d) {
+         let html = `${d.data[0]}<br/>
+                ${d.data[1]} Million </span><br/>`;
+
+         tooltip.html(html)
+             .style("left", `${(d3.event.pageX) - 80}px`)
+             .style("top", `${(d3.event.pageY) - 460}px`)
+             .style("box-shadow", `2px 2px 5px #00FFFF`)    // OPTIONAL for students
+             .transition()
+             .duration(200)
+             .style("opacity", 0.9)
+             };
+
+           // Mouseout function to hide the tool on exit
+           let mouseout = function(d) {
+               // Set opacity back to 0 to hide
+               tooltip.transition()
+                   .duration(200)
+                   .style("opacity", 0);
+           };
          const pie = d3.pie(data).value(function(d){return d[1]});
          var arc = g.selectAll(".arc")
                     .data(pie(data))
@@ -68,6 +88,8 @@ function addGraph3(region) {
 
                     arc.append("path")
                        .attr("d", path)
+                       .on("mouseover", mouseover) // HINT: Pass in the mouseover and mouseout functions here
+                       .on("mouseout", mouseout)
                        .transition()
                        .duration(400)
                        .attr("fill", function(d) { return color(d.data[0]); });
@@ -78,36 +100,13 @@ function addGraph3(region) {
                         })
                       .style("text-anchor", "start")
                        .text(function(d) { return d.data[0]; });
-
-                       let mouseover = function(d) {
-                         let color_span = `<span style="color: ${color(d.song)};">`;
-                         let html = `${d.artist}<br/>
-                                 ${color_span}${d.song}</span><br/>
-                                 Position: ${color_span}${d.position}</span>`;       // HINT: Display the song here
-
-                         // Show the tooltip and set the position relative to the event X and Y location
-                         tooltip.html(html)
-                             .style("left", `${(d3.event.pageX) - 220}px`)
-                             .style("top", `${(d3.event.pageY) - 30}px`)
-                             .style("box-shadow", `2px 2px 5px ${color(d.song)}`)    // OPTIONAL for students
-                             .transition()
-                             .duration(200)
-                             .style("opacity", 0.9)
-                     };
-
-                     // Mouseout function to hide the tool on exit
-                     let mouseout = function(d) {
-                         // Set opacity back to 0 to hide
-                         tooltip.transition()
-                             .duration(200)
-                             .style("opacity", 0);
-                     };
                     });
 
                     svg3.append("g")
-                    .attr("transform", `translate(${(-60)} , ${(-160)})`)
+                    .attr("transform", `translate(${(-60)} , ${(-155)})`)
                        .append("text")
                        .text("Popular Genres in Region: " + region)
+                       .style("font-size", 15)
                        .attr("class", "title")
 };
 function addGraph2(genre) {

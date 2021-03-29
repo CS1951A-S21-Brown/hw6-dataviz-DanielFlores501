@@ -25,6 +25,11 @@
 .background{
   background-color: #E8EBF7
 }
+
+text{
+font-size: 12px;
+
+}
 .tooltip {
     position: absolute;
     font-size: 12px;
