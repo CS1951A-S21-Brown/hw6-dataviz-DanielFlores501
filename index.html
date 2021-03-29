@@ -8,21 +8,114 @@
         <!--Feel free to add more CSS files as needed-->
         <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
     </head>
-<body>
+<body class="background">
     <div class="header">
         <h3>Assignment 6 &laquo; Data Visualization Dashboard &raquo;</h3>
     </div>
     <!--  We included a basic HTML structure for the 3 graphs here. Feel free to change this if you'd like  -->
     <div class="row">
-        <div class="col-lg-6">
-            <div id="graph1"></div>
-            <div id="graph2"></div><br/>
+        <div class="col-lg-6" >
+            <div id="graph1" class="graph"></div>
+        </div>
+        <div class="col-lg-6"  >
+        <div id="graph2" class="graph">
+            <form id="genreSelect" >
+            <select onchange="addGraph2(this.value)" id="genreForm" class="selector">
+              <option value="Action">Action</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Fighting">Fighting</option>
+              <option value="Misc">Misc</option>
+              <option value="Platform">Platform</option>
+              <option value="Puzzle">Puzzle</option>
+              <option value="Racing">Racing</option>
+              <option value="Role-Playing">Role-Playing</option>
+              <option value="Shooter">Shooter</option>
+              <option value="Simulation">Simulation</option>
+              <option value="Sports">Sports</option>
+              <option value="Strategy">Strategy</option>
+            </select>
+            </form></div>
         </div>
         <div class="col-lg-6">
-            <div id="graph3"></div>
+        <div id="graph3" class="graph">
+            <form id="regionSelect" >
+            <select onchange="addGraph3(this.value)" id="regionForm" class="selector">
+              <option value="NA">North America</option>
+              <option value="EU">Europe</option>
+              <option value="JP">Japan</option>
+              <option value="Other">Other</option>
+            </select>
+            </form></div>
         </div>
     </div>
     <!--Feel free to add more JavaScript files as needed-->
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="main.js">
+      const margin = {top: 40, right: 200, bottom: 40, left: 100};
+    </script>
 </body>
 </html>
+
+<!--
+Written Questions:
+1. My dashboard answers the Video Game Sales dataset. The first graph titled
+"Top 10 Video Games of All Time" answers  the first question by displaying the
+names of the top 10 games of all time according to that game's global sales.
+Using a bar graph, the games with higher sales are
+shown at the top while the smaller games are at the bottom.
+The pie graph titled "Popular Genres in Region <region>" answers the second question
+by showing what proportion of the pie a genre has in a selected region. Using the
+interactive dropdown menu, the user can select a region to see what video games
+are most popular there. Also, to improve readability the bottom 4 genres are grouped
+together.
+The second bar chart titled "Top Publishers of <Genre>" uses a bar chart to display
+the global sales made by a publisher in a given genre. This answers the third question
+by showing the top publisher at the top of the list with the largest bar, and
+the following publishers below it. The dropdown menu allows the user to select a
+genre they would like to see the sales and top publishers for.
+
+2. D3 was useful as it provided a library of graphs to plot my data on, making the
+data from the CSV into a presentable and easy to understand graph.
+D3 also had functions to easily label my data dynamically, allowing for the Dashboard
+to have interactive graphs. This helps to display the large amount of data in a
+digestible way.
+D3 helped with its library, specifically functions related to color. By handling the
+spreading of colors across the data, D3 created possibilities to utilize color
+schemes that are more readable for certain groups, making the data more accessible.
+
+3. D3 would not be the best tool due to its limitations in the graphs it offers.
+Although there is a wide spread of available stencils, data scientists could be limited
+in how they display data.
+D3 also would not be the best because of its data formatting expectations. When
+managing larger, more confusing data sets, it might take a lot of processing to
+shape the data into the format that some of D3's functions expect, such as domain
+and range. In these cases, it might be better to use a coding language with more
+complex list slicing.
+D3 would not be the best tool if a scientists was trying to reach as many people
+as possible with their data, due to the technological strain it has. Along with
+the potential of being time inefficient, D3 or javascript is not supported on
+older browsers. This means that people without the latest technology may not have
+the same access to the data as others.
+
+4. My dashboard is not very accessible according to the provided articles. Users
+with tritanopia might have more difficulty reading the bar graphs, as they are
+colored green and blue. At the time I did not realize this condition existed,
+so I did not avoid it, but in the future I can avoid this and exclusively use
+color schemes that are known to be readable to all. Users with other visual
+impairments may also find it unaccessible, because the fonts used are small.
+To remedy this I could look into what font sizes are necessary on computers
+and phones to be legible to all. Furthermore, I appreciated the advice in one
+of the articles that said to put white spaces between slices of a pie chart, as
+the provided visual helped me understand why it would be difficult for some to
+undestand otherwise. My pie chart lacked this and therefore might not be easy to
+understand for some, so in the future I can add the whitespaces to make it more
+accessible.
+
+5. When deciding on the colors to use for my graphs, I could have researched visual
+impairments that I should avoid and sought out a color scheme that would be
+accessible. I also could have found information about how white space in a pie chart
+helps make the data more accessible, and included it in my dashboard. Finally, I also
+could have raised the size of the font to be easier to read. I did not take these
+steps during my design process due to a time limiation for this project, my unfamiliarity
+with D3's libraries, and my lack of knowledge on some visual impairments that make
+my dashboard hard to read.  
+--->
