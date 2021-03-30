@@ -26,10 +26,12 @@
   background-color: #E8EBF7
 }
 
-text{
-font-size: 12px;
-
+.written_answers{
+    margin: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
+
 .tooltip {
     position: absolute;
     font-size: 12px;
