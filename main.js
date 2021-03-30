@@ -109,6 +109,7 @@ function addGraph3(region) {
                        .style("font-size", 15)
                        .attr("class", "title")
 };
+
 function addGraph2(genre) {
   let countRef = svg2.append("g");
 
